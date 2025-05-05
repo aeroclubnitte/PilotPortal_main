@@ -61,28 +61,11 @@
             justify-content: space-between;
             align-items: center;
         }
-
-
-        .simulation-summary {
-    /* margin-top: 10px; */
-    padding: 10px;
-    background-color: #eaeaea;
-    border-radius: 8px;
-    width: fit-content;
-    font-size: 16px;
-    font-weight: bold;
-}
-
     </style>
 </head>
 <body>
     <div class="container">
-        <center>  <div class="simulation-summary">
-            <p><strong>Total Simulation Hours: </strong><span id="totalHours"><%=totalHours %></span> hrs</p>
-        </div></center>
-        
         <div class="header-container">
-            
             <h1><b>SIMULATION DETAILS</b></h1>
             <a href="/add_simulation"><button class="btn">Add Simulation Details</button></a>
         </div>
@@ -90,7 +73,7 @@
             <table id="simulationtable">
                 <thead>
                     <tr>
-                        <!-- <th>Flight-Id</th> this is unneseary --> 
+                        <th>Flight-Id</th>
                         <th>Date</th>
                         <!-- <th>Name</th> -->
                         <th>Start Time</th>
@@ -102,7 +85,7 @@
                 <tbody>
                     <% simulations.forEach(simulation => { %>
                         <tr>
-                            <!-- <td><%=simulation.flight_id%></td> -->
+                            <td><%=simulation.flight_id%></td>
                             <td><%= new Date(simulation.date).toLocaleDateString() %></td>
                             <!-- <td><%= simulation.name %></td> -->
                             <td><%= simulation.start_time %></td>
@@ -112,10 +95,8 @@
 
                         </tr>
                     <% }) %>
-                  
                 </tbody>
             </table>
-          
         </center>
     </div>
 </body>

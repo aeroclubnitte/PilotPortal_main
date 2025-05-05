@@ -141,15 +141,15 @@ router.get('/editprofile', async (req, res) => {
     if (!profileData) {
       return res.status(404).send('Profile not found');
     }
-    //const imageUrl = await controller2.generateDownloadURL(username); commented
+    const imageUrl = await controller2.generateDownloadURL(username);
     console.log("get edit profile GEPGEPGEPGEPGEPGEP");
     console.log("Profile Data:", profileData);
-    //console.log("Image URL:", imageUrl);
+    console.log("Image URL:", imageUrl);
     console.log("DATEDATEADTE");
     console.log(profileData.dob);
     console.log("DATEDATEADTE");
     console.log("get edit profile GEPGEPGEPGEPGEPGEP");
-    res.render('editprofile.ejs', { profileData, imageUrl:null, emailExists });
+    res.render('editprofile.ejs', { profileData, imageUrl, emailExists });
 
 
 
@@ -306,8 +306,8 @@ router.get('/profile', async (req, res) => {
    
     console.log("pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp");
     
-    res.render('profile.ejs', { profileData, imageUrl:null , totalDurationInSeconds, sim_totalDurationInMinutes, emailExists }); 
-    // res.render('profile.ejs', { profileData,  totalDurationInSeconds, sim_totalDurationInMinutes, emailExists }); commented n modified to blw
+    // res.render('profile.ejs', { profileData, imageUrl, totalDurationInSeconds, sim_totalDurationInMinutes, emailExists }); commented n modified to blw
+    res.render('profile.ejs', { profileData,  totalDurationInSeconds, sim_totalDurationInMinutes, emailExists });
   } catch (error) {
     console.error('Error retrieving object URL from S3:', error);
     res.status(500).send('Failed to retrieve image URL from S3');
@@ -324,7 +324,7 @@ router.get('/downloadpdf', checkToken1, async (req, res) => {
 
 
     const username = email.split('@')[0];
-   // const imageurl = await controller2.generateDownloadURL(username); commented
+    const imageurl = await controller2.generateDownloadURL(username);
 
     console.log("Email check email check in member_dashboard");
     console.log(email);
@@ -391,7 +391,7 @@ console.log("here now, before rrender")
       trueCount,
       falseCount,
       emailExists,
-      imageurl:null,//changed
+      imageurl,
       tabledetails,
       maindetails,
       totalsum,totaldur
@@ -444,7 +444,7 @@ router.get('/pdftemplate', checkToken1, async (req, res) => {//here pdf generati
     const { email } = req.user; // Get the email from the decoded token
    
     const username = email.split('@')[0];
-    //const imageurl = await controller2.generateDownloadURL(username);
+    const imageurl = await controller2.generateDownloadURL(username);
 
     console.log("Email check email check in member_dashboard");
     console.log(email);
@@ -508,7 +508,7 @@ router.get('/pdftemplate', checkToken1, async (req, res) => {//here pdf generati
       trueCount,
       falseCount,
       emailExists,
-      imageurl:null , //marked null
+      imageurl,
       tabledetails,
       maindetails,
       totalsum,
@@ -757,8 +757,8 @@ router.post('/update', upload1.single('imagefile'), async (req, res) => {
     if (req.file) {
       const username = email.split('@')[0];
       console.log("only the username of email is is " + username);
-      //const url = await controller2.generateUploadURL(username); commented
-     // console.log("Generate upload url" + url);
+      const url = await controller2.generateUploadURL(username);
+      console.log("Generate upload url" + url);
       const file = req.file.buffer;
       console.log("file received");
 
@@ -766,23 +766,23 @@ router.post('/update', upload1.single('imagefile'), async (req, res) => {
       // throw new Error('No file uploaded');
       console.log(file);
       console.log(req.file.mimetype);
-     // console.log("fetcing data url ");
+      console.log("fetcing data url ");
 
-      // const response = await fetch(url, {  commented
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": req.file.mimetype
-      //   },
-      //   body: file
-      // });
-      // if (response.ok) {
-      //   console.log('Image updated to S3');
-      // } else {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": req.file.mimetype
+        },
+        body: file
+      });
+      if (response.ok) {
+        console.log('Image updated to S3');
+      } else {
   
-      //   const errorInText = await response.text();
-      //   console.error('Failed to update image to S3:', errorInText);
-      //   return;
-      // }
+        const errorInText = await response.text();
+        console.error('Failed to update image to S3:', errorInText);
+        return;
+      }
     }
 
    

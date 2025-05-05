@@ -13,6 +13,14 @@ const {sending}=require("./Controller/mail")
 
 const cron = require('node-cron');
 const { extract_call_details } = require('./Controller/call_controller');
+//sanjana added async funt here
+setInterval(async () => {
+  console.log("Checking for scheduled calls...");
+  await extract_call_details();
+}, 60000);
+console.log("extract_call_details() function should have been executed.");
+
+
 const cronSchedule = '* * * * *'; // Runs every 1 minutes
 console.log('running a task every minute');
 

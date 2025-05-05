@@ -550,134 +550,67 @@ new Chart(ctx4, {
     }
   }
 });
-// const data5= JSON.parse('<%- JSON.stringify(data5) %>'); // Parse the JSON data for chart1
+const data5= JSON.parse('<%- JSON.stringify(data5) %>'); // Parse the JSON data for chart1
   
-//   const labels5 = data5.map(item => item.label);
-//   const values5 = data5.map(item => item.value);
+  const labels5 = data5.map(item => item.label);
+  const values5 = data5.map(item => item.value);
   
-//   const ctx5 = document.getElementById('chart5').getContext('2d');
-//   new Chart(ctx5, {
-//     type: 'line',
-//     data: {
-//       labels: labels5,
-//       datasets: [{
+  const ctx5 = document.getElementById('chart5').getContext('2d');
+  new Chart(ctx5, {
+    type: 'line',
+    data: {
+      labels: labels5,
+      datasets: [{
        
-//         data: values5,
-//         backgroundColor: 'rgba(0, 255, 1, 0.1)',
-//         borderColor: 'rgba(0, 255, 0, 1)',
-//         borderWidth: 1
-//       }]
-//     },
-//     options: {
-//       plugins: {
-//         title: {
-//           display: true,
-//           text: 'SIMULATION DETAILS',
-//           font: {
-//             weight: 'bold',
-//             size: 20,
-//             family: 'Montserrat'
-//           }
-//         },
-//         legend: {
-//           display: false
-//         }
-//       },
-//       scales: {
-//         x: {
-//           title: {
-//             display: true,
-//             text: 'PILOT',
-//             font: {
-//               weight: 'bold',
-//               size: 12,
-//               family: 'Montserrat'
-//             }
-//           }
-//         },
-//         y: {
-//           title: {
-//             display: true,
-//             text: 'TIME(minutes)',
-//             font: {
-//               weight: 'bold',
-//               size: 12,
-//               family: 'Montserrat',
-//               stepSize: 50
-//             }
-//           },
-//           beginAtZero: true          
-//         }
-//       }
-//     }
-//   });
-
-
-const data5 = JSON.parse('<%- JSON.stringify(data5) %>'); // Parse the JSON data for chart5
-
-const labels5 = data5.map(item => item.label);
-const values5 = data5.map(item => item.value);
-
-const ctx5 = document.getElementById('chart5').getContext('2d');
-new Chart(ctx5, {
-  type: 'bar', // Change to bar for better visualization
-  data: {
-    labels: labels5,
-    datasets: [{
-      data: values5,
-      backgroundColor: 'rgba(0, 255, 0, 0.2)',
-      borderColor: 'rgba(0, 255, 0, 1)',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    plugins: {
-      title: {
-        display: true,
-        text: 'SIMULATION DETAILS',
-        font: {
-          weight: 'bold',
-          size: 20,
-          family: 'Montserrat'
-        },
-        padding: {
-          bottom: 20
-        }
-      },
-      legend: {
-        display: false
-      }
+        data: values5,
+        backgroundColor: 'rgba(0, 255, 1, 0.1)',
+        borderColor: 'rgba(0, 255, 0, 1)',
+        borderWidth: 1
+      }]
     },
-    scales: {
-      x: {
+    options: {
+      plugins: {
         title: {
           display: true,
-          text: 'PILOT',
+          text: 'SIMULATION DETAILS',
           font: {
             weight: 'bold',
-            size: 14,
-            family: 'Montserrat'
-          }
-        }
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'TIME (minutes)',
-          font: {
-            weight: 'bold',
-            size: 14,
+            size: 20,
             family: 'Montserrat'
           }
         },
-        beginAtZero: true,
-        ticks: {
-          stepSize: 20 // Adjust step size for better spacing
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'PILOT',
+            font: {
+              weight: 'bold',
+              size: 12,
+              family: 'Montserrat'
+            }
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'TIME(minutes)',
+            font: {
+              weight: 'bold',
+              size: 12,
+              family: 'Montserrat',
+              stepSize: 50
+            }
+          },
+          beginAtZero: true          
         }
       }
     }
-  }
-});
+  });
 
 
 

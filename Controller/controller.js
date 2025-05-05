@@ -2,6 +2,8 @@ const express=require('express');
 const uuid = require('uuid');
 const jwt=require("jsonwebtoken");
 const app=express();
+const twilio = require('twilio');
+
 
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser')
@@ -367,9 +369,7 @@ module.exports.flying=async(req,res)=>{
         const answer=req.body.answer;
         console.log("flying answer.....................")
         console.log(answer)
-
         console.log("flying answer.....................")
-
         const selectedDroneId=req.body.drone_id;
         console.log(selectedDroneId)
         const [drone_name,droneId]=selectedDroneId.split('-');
@@ -381,7 +381,6 @@ module.exports.flying=async(req,res)=>{
             console.log(query1[2])
 
         if(answer==='yes'){
-
         console.log("let's fly");
         var{flight_id,emailid,copilot,duration,date,mode,batteryid,takeoffvoltage,landingvoltage,windspeed,winddirection,drone_id,result,Description}=req.body
         console.log(req.body)
@@ -1134,16 +1133,9 @@ module.exports.flightdetails = async (req, res) => {
 
     console.log(query4);
     const crashDetails = query4.rows;
-    // if(crashDetails[0].drone_id){
-    // const droneId = crashDetails[0].drone_id;
-    // };
-
-    if (crashDetails.length > 0 && crashDetails[0].drone_id) {
-      const droneId = crashDetails[0].drone_id;
-      console.log("Drone ID:", droneId);
-  } else {
-      console.log("No crash details found or drone_id is missing.");
-  }
+    if(crashDetails[0].drone_id){
+    const droneId = crashDetails[0].drone_id;
+    };
 
     const crashdetails = await pool.query(`
       	

@@ -51,7 +51,7 @@ module.exports.sending = async () => {
 const generateUserReports = async (email, name) => {
   try {
     const username = email.split('@')[0];
-  //  const imageurl = await controller2.generateDownloadURL(username); commented
+    const imageurl = await controller2.generateDownloadURL(username);
 
     const emailExists = await mailDetails.isEmailInProfileData(email);
     const a = await mailDetails.totalsuccesfulflights(email);
@@ -75,7 +75,7 @@ const generateUserReports = async (email, name) => {
       trueCount,
       falseCount,
       emailExists,
-      imageurl:null,//put null here
+      imageurl,
       tabledetails,
       maindetails,
       totalsum,
